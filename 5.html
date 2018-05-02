@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		姓名：<input type="text" />2-5位任意字符<br /><br />
+		房间号：<input type="text" />3位数字<br /><br />
+		邮箱地址：<input type="text" /><br /><br />
+		<button>登记</button>
+		<button>取消</button>隔行变色 奇数行位蓝色 偶数行为红色<br /><br />
+		<table border="1">
+			<tr>
+				<td>全选<input type="checkbox"></td>
+				<td>姓名</td>
+				<td>房间号</td>
+				<td>邮箱地址</td>
+				<td>入住时间</td>
+			</tr>
+		</table>
+		<button>删除</button>
+		
+		<script type="text/javascript">
+			var ipt=document.getElementsByTagName("input");
+			var btn=document.getElementsByTagName("button");
+			var tab=document.getElementsByTagName("tbody")[0];
+			
+			btn[0].onclick=function(){
+				var reg=/^.{2,5}$/
+				var reg1=/^\d{3}$/
+				if(reg.test(ipt[0].value)==false||reg1.test(ipt[1].value)==false||ipt[3].value==""){
+					alert("不符合规则")
+				}else{
+						
+				var tr=document.createElement("tr");
+				tab.appendChild(tr)
+				
+				var td1=document.createElement("td");
+				td1.innerHTML="<input type='checkbox' />"
+				tr.appendChild(td1)
+				
+				var td2=document.createElement("td");
+				td2.innerHTML=ipt[0].value
+				tr.appendChild(td2)
+				
+				var td3=document.createElement("td");
+				td3.innerHTML=ipt[1].value
+				tr.appendChild(td3)
+				
+				var td4=document.createElement("td");
+				td4.innerHTML=ipt[2].value
+				tr.appendChild(td4)
+				
+				var td5=document.createElement("td");
+				td5.innerHTML=new Date().toLocaleString();
+				tr.appendChild(td5)
+				
+				
+			}
+				bs()
+				
+		}
+			btn[1].onclick=function(){
+				ipt[0].value=""
+				ipt[1].value=""
+				ipt[2].value=""
+			}
+			
+			//隔行变色
+			var tr=document.getElementsByTagName("tr")
+			function bs(){
+				for(var i=1;i<tr.length;i++){
+					if(i%2==1){
+						tr[i].style.background="blue"
+					}else{
+						tr[i].style.background="red"
+					}
+				}
+			}
+		//全部删除
+		btn[2].onclick=function(){
+			for(var i=1;i<tr.length;i++){
+				tab.removeChild(tr[i])
+				i--
+			}
+		}
+		//全选
+		ipt[3].onclick=function(){
+			for(var i=0;i<ipt.length;i++){
+				ipt[i].checked=ipt[3].checked
+			}
+		}
+				
+				
+				
+				
+				
+				
+			
+		</script>
+	</body>
+</html>
